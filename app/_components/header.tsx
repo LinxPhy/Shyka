@@ -17,12 +17,12 @@ const Header = () => {
                     </Link>
                 </div>
 
-                {/* <div>
+                <div>
                     <ul>
                         <li><Link href={'/about'}>About</Link></li>
-                        <li><Link href={'/chatbots'}>All Chatbots</Link></li>
+                        <li><Link href={'/chatbots'}>Chatbots</Link></li>
                     </ul>
-                </div> */}
+                </div>
 
                 <div>
                     <ul>

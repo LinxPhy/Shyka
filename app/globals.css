@@ -2,7 +2,7 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -14,7 +14,7 @@
     box-sizing: border-box;
 }
 
-body{
+body {
     font-family: 'Quicksand', sans-serif;
     color: black;
     background-color: hsl(240, 100%, 99%);
@@ -27,13 +27,13 @@ body{
     overflow-y: scroll;
 }
 
-.not-found{
-   text-align: center;
-   margin-top: 50px;
-   color: var(--primary_colour);
+.not-found {
+    text-align: center;
+    margin-top: 50px;
+    color: var(--primary_colour);
 }
 
-.buttonStyle1{
+.buttonStyle1 {
     border: 1px solid var(--primary_colour);
     background-color: var(--primary_colour);
     color: white;
@@ -41,12 +41,12 @@ body{
     font-weight: 500;
 }
 
-.buttonStyle1:hover{
+.buttonStyle1:hover {
     color: var(--primary_colour);
     background-color: white;
 }
 
-.buttonStyle2{
+.buttonStyle2 {
     background-color: var(--primary_colour);
     border: 1px solid var(--primary_colour);
     border-radius: 0.3rem;
@@ -55,19 +55,19 @@ body{
     color: white;
 }
 
-.buttonStyle2:hover{
+.buttonStyle2:hover {
     color: var(--primary_colour);
     background-color: white;
     border: 1px solid var(--primary_colour);
 }
 
-.selected{
+.selected {
     color: var(--primary_colour);
     background-color: white;
     border: 1px solid var(--primary_colour);
 }
 
-.recc-buttons{
+.recc-buttons {
     display: flex;
     gap: 20px;
 }
@@ -98,21 +98,28 @@ body{
         'opsz' 24
 }
 
-.title span{
+.title span {
     font-size: 2.3rem;
     color: var(--primary_colour);
     font-weight: 600;
 }
 
-button, a, img{
+button,
+a,
+img {
     cursor: pointer;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Bungee', cursive;
 }
 
@@ -143,7 +150,7 @@ header {
     height: auto;
     padding: 30px;
 
-    
+
     background-color: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 
@@ -152,22 +159,22 @@ header {
     z-index: 1300;
 }
 
-header ul a{
+header ul a {
     color: black;
 }
 
-header nav{
+header nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-nav ul{
+nav ul {
     list-style-type: none;
 }
 
-header nav ul{
+header nav ul {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -181,58 +188,81 @@ header ul li:hover {
     -webkit-transform: scale(1.1); */
 }
 
-main{
+main {
     max-width: 1300px;
     margin: auto;
     min-height: calc(100dvh - 100px);
 }
 
-section{
+section {
     margin-bottom: 10px;
 }
 
-.title-section h1{
+.title-section h1 {
     font-size: 2.5em;
     text-align: center;
     color: var(--primary_colour);
     padding: 20px 0px;
 }
 
-.title-section h2{
+.title-section h2 {
     margin-bottom: 20px;
 }
 
-.AllChatbots .chatbots-reccomendations{
+.AllChatbots .chatbots-reccomendations {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.reccomendations-wrapper{
+.reccomendations-wrapper {
     max-width: 1300px;
     width: 100%;
     position: relative;
 }
 
-.recommendations .chatbots-reccomendations{
+.chatbots-reccomendations {
     display: flex;
-    overflow: hidden;
+    /* overflow: hidden; */
+    overflow-x: auto;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
 }
 
+
+.chatbots-reccomendations {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.chatbots-reccomendations {
+    -webkit-overflow-scrolling: touch;
+}
+
+
 .chatbots-reccomendations a {
     flex: 0 0 230px;
     margin: 40px 10px;
     /* background-color: #fff6f6; */
-    
+
     border-radius: 1rem;
     padding: 20px;
 }
 
-.nav-buttons{    
+.recent .left-button{
+    position: absolute;
+    top: 50% !important;
+}
+
+.recent .right-button{
+    position: absolute;
+    top: 50% !important;
+}
+
+.nav-buttons {
     width: 50px;
     height: 50px;
     background-color: var(--primary_colour);
@@ -240,43 +270,43 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     cursor: pointer;
-    
+
 }
 
-.reccomendations-wrapper .nav-buttons{
+.reccomendations-wrapper .nav-buttons {
     opacity: 0.4;
 }
 
-.reccomendations-wrapper:hover .nav-buttons{
+.reccomendations-wrapper:hover .nav-buttons {
     opacity: 1;
 }
 
 
-.recommendations .left-button{
+.recommendations .left-button {
     position: absolute;
     top: 43%;
 }
 
-.recommendations .right-button{
+.recommendations .right-button {
     position: absolute;
     top: 43%;
     right: 0;
 }
 
-.category-wrapper .left-button{
+.category-wrapper .left-button {
     position: absolute;
     top: 50%;
 }
 
-.category-wrapper .right-button{
+.category-wrapper .right-button {
     position: absolute;
     top: 50%;
     right: 0;
 }
 
-.arrow{
+.arrow {
     color: white;
 }
 
@@ -287,32 +317,44 @@ section{
     background-color: transparent; 
 } */
 
-.recommendations .chatbots-reccomendations a{
+.recommendations .chatbots-reccomendations a {
     background-color: white;
     border: 2px solid #fce4e4;
-    
+
 }
 
-.chatbot-option{
+.chatbot-option {
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 230px;
     overflow: hidden;
+    margin-right: 5px;
 }
 
-.chatbots-reccomendations a:hover{
+.chatbot-option-nothing{
+    background-color: white;
+    border: 2px solid #fce4e4;
+    height: 230px;
+    width: 186px;
+    padding: 20px;
+    border-radius: 1rem;
+    margin: 40px 10px;
+    box-sizing: content-box;
+}
+
+.chatbots-reccomendations a:hover {
     cursor: pointer;
 }
 
-.chatbot-option img{
+.chatbot-option img {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.chatbot-option h3{
+.chatbot-option h3 {
     font-family: 'Bungee', cursive;
     font-size: 0.938rem;
     color: var(--primary_colour);
@@ -320,7 +362,7 @@ section{
     text-align: center;
 }
 
-.chatbot-option p{
+.chatbot-option p {
     color: black;
     text-align: center;
 }
@@ -333,11 +375,11 @@ section{
     -webkit-transition: all 0.5s ease-in-out;
 }
 
-.title-section{
+.title-section {
     color: var(--primary_colour);
 }
 
-.Chatbot{
+.Chatbot {
     width: 100%;
     /* min-height: 100dvh; */
     min-height: calc(100dvh - 106px);
@@ -345,17 +387,17 @@ section{
     justify-content: center;
 }
 
-.chatbot-container{
+.chatbot-container {
     width: 100%;
     /* min-height: 100dvh; */
     min-height: calc(100dvh - 106px);
     /*  min-height */
-    max-width: 650px;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
 }
 
-.chatbot-header{
+.chatbot-header {
     flex: 0 0 80px;
     align-items: center;
     padding: 5px 20px;
@@ -364,7 +406,7 @@ section{
     background-color: white;
 }
 
-.chatbot-login-banner{
+.chatbot-login-banner {
     padding: 20px;
     text-align: center;
     background-color: var(--primary_colour);
@@ -372,36 +414,37 @@ section{
     font-weight: bold;
 }
 
-.header-image-section{
+.header-image-section {
     flex-basis: 40%;
 }
 
-.header-image-section img{
+.header-image-section img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.header-text-section{
+.header-text-section {
     flex-basis: 60%;
     text-align: center;
 }
 
-.chatbot-body{
+.chatbot-body {
     flex-grow: 1;
     flex-shrink: 1;
     height: 100%;
     background-color: white;
 }
 
-.message-area-container{
+.message-area-container {
     width: 100%;
     height: 100%;
     padding: 20px;
     scroll-behavior: smooth;
     display: flex;
     flex-direction: column;
+    min-height: 350px;
 }
 
 .message-area-container::-webkit-scrollbar {
@@ -431,7 +474,7 @@ section{
     align-items: center;
 }
 
-.system-message{
+.system-message {
     border-radius: 0px 10px 10px 10px;
     color: rgb(235, 235, 235);
     background-color: #a31212;
@@ -439,7 +482,7 @@ section{
     margin-left: 40px;
 }
 
-.system-message img{
+.system-message img {
     position: absolute;
     left: -45px;
     top: 0;
@@ -448,14 +491,14 @@ section{
     border: 2px solid black;
 }
 
-.user-message{
+.user-message {
     color: black;
     background-color: #e6e9ea;
     border-radius: 10px 10px 0px 10px;
     margin-left: auto;
 }
 
-.settings{
+.settings {
     background-color: white;
     display: flex;
     justify-content: flex-start;
@@ -464,7 +507,7 @@ section{
     flex: 0 0 70px;
 }
 
-.settings button{
+.settings button {
     flex: 1;
     background-color: inherit;
     border: 2px solid #e6e9ea;
@@ -479,13 +522,13 @@ section{
     -webkit-transition: all 0.3s ease;
 }
 
-.settings button:hover{
+.settings button:hover {
     /* background-color: #868686; */
     background-color: var(--primary_colour);
     color: white;
 }
 
-.footer{
+.footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -497,7 +540,7 @@ section{
     padding: 10px 20px;
 }
 
-.footer input{
+.footer input {
     width: 100%;
     height: 95%;
     border: none;
@@ -513,7 +556,7 @@ section{
     border: 1px solid #868686;
 }
 
-.footer div{
+.footer div {
     flex: 0 0 50px;
     display: flex;
     justify-content: center;
@@ -524,7 +567,7 @@ section{
 /* ____________________________________________ FOOTER _________________________________ */
 
 
-footer{
+footer {
     width: 100%;
 
     display: flex;
@@ -540,23 +583,23 @@ footer{
     margin-top: 100px;
 }
 
-footer .footer-socials ul{
+footer .footer-socials ul {
     display: flex;
     flex-direction: row;
 }
 
-footer h3{
+footer h3 {
     font-family: 'Bungee', cursive;
     font-size: 20px;
     margin-bottom: 10px;
     color: #ff5454;
 }
 
-footer ul{
+footer ul {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 10px; 
+    gap: 10px;
 }
 
 footer ul li a {
@@ -569,7 +612,7 @@ footer ul li a:hover {
 }
 
 
-footer .footer-main{
+footer .footer-main {
     width: 100%;
     margin-bottom: 30px;
 
@@ -578,29 +621,29 @@ footer .footer-main{
     align-items: flex-start;
 }
 
-.footer-main-children{
+.footer-main-children {
     display: flex;
     gap: 40px;
 }
 
-@media screen and (max-width: 600px)  {
-    
+@media screen and (max-width: 600px) {
 
-    footer .footer-main{
+
+    footer .footer-main {
         flex-direction: column;
         gap: 20px;
     }
 
-    .footer-main-children{
+    .footer-main-children {
         flex-direction: column;
         gap: 20px;
     }
 
-    footer h3{
+    footer h3 {
         margin: 0px;
     }
 
-    .footer-message{
+    .footer-message {
         width: 100%;
         justify-content: flex-start;
     }
@@ -608,17 +651,17 @@ footer .footer-main{
 }
 
 
-.search-area{
+.search-area {
     text-align: center;
 }
 
-.search-area input{
+.search-area input {
     padding: 10px 15px;
     width: 250px;
     margin-bottom: 100px;
 }
 
-.search-results{
+.search-results {
     max-width: 500px;
     display: flex;
     flex-direction: column;
@@ -626,7 +669,7 @@ footer .footer-main{
     margin: auto;
 }
 
-.search-result{
+.search-result {
     display: flex;
     justify-content: space-between;
     gap: 20px;
@@ -637,16 +680,16 @@ footer .footer-main{
     color: black;
 }
 
-.search-result p{
+.search-result p {
     font-size: 1rem;
     font-weight: 600;
 }
 
-.search-result span{
+.search-result span {
     color: var(--primary_colour);
 }
 
-.search-result:hover{
+.search-result:hover {
     background-color: rgb(236, 236, 236);
 }
 
@@ -719,7 +762,7 @@ footer .footer-main{
 
 
 
-.submit-button:hover{
+.submit-button:hover {
     transform: scale(1.1);
     transition: scale 500ms ease-in;
 }
@@ -727,13 +770,13 @@ footer .footer-main{
 
 
 
-.donations{
-  
+.donations {
+
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding: 40px calc((100% - (300px * 3)) / 2);
-    
+
 }
 
 .donation-option {
@@ -743,7 +786,7 @@ footer .footer-main{
     align-items: center;
     flex: 0 0 150px;
     margin: 40px 60px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     height: 130px;
     background-color: white;
@@ -751,15 +794,15 @@ footer .footer-main{
     font-weight: 500;
 }
 
-.custom-option{
+.custom-option {
     flex: 0 0 300px;
     display: flex;
-    flex-direction: row;  
-    padding: 0px 5px;  
+    flex-direction: row;
+    padding: 0px 5px;
 }
 
 
-.custom-option input{
+.custom-option input {
     border-top: none;
     border-left: none;
     border-right: none;
@@ -772,7 +815,7 @@ footer .footer-main{
     flex-grow: 1;
 }
 
-.custom-option div{
+.custom-option div {
     height: 100%;
     flex-basis: 90px;
     display: flex;
@@ -781,7 +824,7 @@ footer .footer-main{
 }
 
 
-.donation-option:hover{
+.donation-option:hover {
     cursor: pointer;
     transform: scale(1.05);
     transition: all 0.3s ease;
@@ -790,16 +833,23 @@ footer .footer-main{
 
 
 @media screen and (max-width: 768px) {
-    .Home{
+    .Home {
         margin: 10px;
     }
 
-    .nav-buttons{
+    .nav-buttons {
         display: none;
     }
 
-    .recc-buttons{
+    .recc-buttons {
         justify-content: center;
         flex-wrap: wrap;
+        gap: 10px;
+
+    }
+
+    .recc-buttons button {
+        width: 100%;
+        padding: 20px 25px;
     }
 }

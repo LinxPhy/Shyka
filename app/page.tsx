@@ -3,6 +3,7 @@ import AllChatbots from "./_components/chatbots"
 import Reccomendations from "./_components/recommendations"
 import Categories from "./_components/categories"
 import Footer from "./_components/footer"
+import Recent from "./_components/recent"
 
 export default function Home() {
 
@@ -24,9 +25,10 @@ export default function Home() {
           </div>
         </section>
 
+        {/* <Recent /> */}
         <Reccomendations />
         <Categories />
-        <AllChatbots />
+        {/* <AllChatbots /> */}
 
 
       </main>

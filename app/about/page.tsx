@@ -41,15 +41,6 @@ function About() {
                                 <br></br>
                                 <br></br>
                                 Do not engage in any activity that may be deemed as harmful to our website.
-                                <br></br>
-                                <br></br>
-                                We reserve the right to refuse service to anyone for any reason at any time.
-                                <br></br>
-                                <br></br>
-                                We reserve the right to modify or terminate the Service for any reason, without notice at any time.
-                                <br></br>
-                                <br></br>
-                                For any questions or concerns, feel free to <Link className='about-href' href="/contact">contact us</Link>
                             </p>
                         </div>
                     </div>

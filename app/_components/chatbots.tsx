@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Chatbots from "../_files/Chatbots"
 import Link from "next/link"
+import saveToRecent from "./saveToLocalStorage";
 
 
 const AllChatbots = () => {
@@ -30,7 +31,7 @@ const AllChatbots = () => {
                 {chatbots.map((chatbot: any) => {
                     return (
                         <Link href={`/chatbots/${chatbot.alias}`} key={chatbot.id}>
-                            <div className="chatbot-option" >
+                            <div className="chatbot-option" onClick={() => saveToRecent(chatbot.alias)}>
                                 <img src={chatbot.image} alt="ChatbotImage" loading="lazy" className={`smooth-image image-${loading ? 'visible' : 'hidden'}`} onLoad={() => handleImageLoad}></img>
                                 <h3>{chatbot.name}</h3>
                                 {chatbot.anime? <p>{chatbot.anime}</p> : <p>{chatbot.category}</p>}
