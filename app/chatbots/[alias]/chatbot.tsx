@@ -136,7 +136,6 @@ const Chatbot = (props: any) => {
 
         completeResponse()
         setmessageCompleted(false)
-        setPrompt('')
 
     }, [messageCompleted, messages])
 
@@ -147,6 +146,7 @@ const Chatbot = (props: any) => {
         try {
 
             e.preventDefault()
+            setPrompt('')
             setLoading(true)
 
             const userMessage = {
@@ -157,7 +157,7 @@ const Chatbot = (props: any) => {
             const chatbot_logs = [...messages, userMessage]
             setMessages(chatbot_logs)
             setmessageCompleted(true)
-
+            
 
         } catch (error: any) {
 
@@ -218,7 +218,7 @@ const Chatbot = (props: any) => {
                 </div>
 
                 <div className="footer">
-                    <input type="text" placeholder="Reply..." onChange={(e: any) => setPrompt(e.target.value)}  onKeyDown={(e : any) => handleOnKeyDown(e)} ></input>
+                    <input type="text" placeholder="Reply..." onChange={(e: any) => setPrompt(e.target.value)} value={prompt} onKeyDown={(e : any) => handleOnKeyDown(e)} ></input>
 
                     {loading && loading ? (
                         <div className='animationHolder'>
