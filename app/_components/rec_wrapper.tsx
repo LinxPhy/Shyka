@@ -22,12 +22,7 @@ function Wrapper(props: any) {
 
     useEffect(() => {
         setLoading(true);
-    }, []);
-
-
-    const handleImageLoad = () => {
-        setLoading(true);
-    };
+    }, [])
 
 
     return (
@@ -39,7 +34,7 @@ function Wrapper(props: any) {
                     return (
                         <Link href={`/chatbots/${chatbot.alias}`} key={chatbot.id}>
                             <div className="chatbot-option" onClick={() => saveToRecent(chatbot.alias)}>
-                                <img src={chatbot.image} className={`smooth-image image-${loading ? 'visible' : 'hidden'}`} onLoad={() => handleImageLoad} alt="ChatbotImage"></img>
+                                <img src={chatbot.image} loading="eager" alt="ChatbotImage"></img>
                                 <h3>{chatbot.name}</h3>
                             </div>
                         </Link>
