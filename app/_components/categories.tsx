@@ -16,7 +16,7 @@ const Categories = () => {
                 <h2>Categories</h2>
             </div>
 
-            {/* <Wrapper data={{categories: unique_categories}} /> */}
+            <Wrapper data={{categories: unique_categories}} />
         </section>
     )
 
