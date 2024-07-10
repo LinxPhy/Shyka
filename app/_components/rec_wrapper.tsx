@@ -30,7 +30,7 @@ function Wrapper(props: any) {
 
             <div className="chatbots-reccomendations"
                 ref={ref}>
-                {data.map((chatbot: any) => {
+                {data.map((chatbot: any) => {   
                     return (
                         <Link href={`/chatbots/${chatbot.alias}`} key={chatbot.id}>
                             <div className="chatbot-option" onClick={() => saveToRecent(chatbot.alias)}>
