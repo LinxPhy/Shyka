@@ -13,7 +13,7 @@ function AllChatbotsPage() {
                     </div>
                 </section>
 
-                <AllChatbots />
+                {/* <AllChatbots /> */}
             </main>
 
             <Footer />

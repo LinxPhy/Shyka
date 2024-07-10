@@ -8,10 +8,9 @@ const Footer = () => {
         <footer>
             <div className="footer-main">
                 <div>
-                    <h3>Useful Link</h3>
+                    <h3>Useful Links</h3>
 
                     <div className='footer-main-children'>
-
                         <ul>
                             <li><Link href='/'>Home</Link></li>
                             <li><Link href='/chatbots'>Chatbots</Link></li>
@@ -21,13 +20,6 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div>
-                    <h3>Donation</h3>
-
-                    <ul>
-                        <li><Link href="/donation">Donation</Link></li>
-                    </ul>
-                </div>
             </div>
 
             <div className='footer-message'>
