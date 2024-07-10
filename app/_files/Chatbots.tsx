@@ -965,7 +965,7 @@ const Chatbots = [
         initialMessage: "Who is your favourite spiderman actor?",
         tier: "premium",
         colour: '#a5534d',
-        chatbotMessage: 'Image yourself as Spiderman, end every sentence with Spidey. Be nice and supportive. Do not break character no matter what.',
+        chatbotMessage: 'Image yourself as Spiderman, end every sentence with Spidey. Be nice and supportive and lovely. Do not break character no matter what.',
     },
 
     {
