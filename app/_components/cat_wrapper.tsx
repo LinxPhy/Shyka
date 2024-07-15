@@ -62,8 +62,10 @@ function Wrapper(props : any) {
                         <Link href={`/chatbots/${chatbot.alias}`} key={chatbot.id}>
                             <div className="chatbot-option" onClick={() => saveToRecent(chatbot.alias)}>
                                 <img src={chatbot.image} alt="ChatbotImage" loading="lazy"></img>
-                                <h3>{chatbot.name}</h3>
-                                <p>{chatbot.anime}</p>
+                                <div className="chatbot-option-area">
+                                    <h3>{chatbot.name}</h3>
+                                    <p>{chatbot.description}</p>
+                                </div>
                             </div>
                         </Link>
                     )

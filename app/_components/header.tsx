@@ -1,5 +1,3 @@
-
-
 import Link from "next/link"
 import AuthButtons from "./AuthButtons"
 import Hamburger from "./Hamburger"

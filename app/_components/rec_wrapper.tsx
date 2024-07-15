@@ -1,11 +1,8 @@
 'use client'
-import { useEffect, useRef, useState } from "react"
+import { useRef} from "react"
 import Link from "next/link"
-import saveToRecent from "./saveToLocalStorage"
 
 function Wrapper(props: any) {
-
-    const [loading, setLoading] = useState(false)
     const ref = useRef<HTMLDivElement>(null)
     const wrapper = useRef<HTMLDivElement>(null)
     const data = props.data
@@ -20,11 +17,6 @@ function Wrapper(props: any) {
 
     }
 
-    useEffect(() => {
-        setLoading(true);
-    }, [])
-
-
     return (
         <div className="reccomendations-wrapper" ref={wrapper}>
 
@@ -33,9 +25,12 @@ function Wrapper(props: any) {
                 {data.map((chatbot: any) => {   
                     return (
                         <Link href={`/chatbots/${chatbot.alias}`} key={chatbot.id}>
-                            <div className="chatbot-option" onClick={() => saveToRecent(chatbot.alias)}>
+                            <div className="chatbot-option">
                                 <img src={chatbot.image} loading="eager" alt="ChatbotImage"></img>
-                                <h3>{chatbot.name}</h3>
+                                <div className="chatbot-option-area">
+                                    <h3>{chatbot.name}</h3>
+                                    <p>{chatbot.description}</p>
+                                </div>
                             </div>
                         </Link>
                     )

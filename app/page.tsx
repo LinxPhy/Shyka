@@ -4,6 +4,7 @@ import Reccomendations from "./_components/recommendations"
 import Categories from "./_components/categories"
 import Footer from "./_components/footer"
 import Recent from "./_components/recent"
+import Innovation from "./_components/innovation"
 
 export default function Home() {
 
@@ -27,6 +28,7 @@ export default function Home() {
 
         {/* <Recent /> */}
         <Reccomendations />
+        <Innovation />
         <Categories />
         {/* <AllChatbots /> */}
 
