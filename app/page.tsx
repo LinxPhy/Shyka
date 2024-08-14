@@ -28,8 +28,8 @@ export default function Home() {
 
         {/* <Recent /> */}
         <Reccomendations />
-        <Innovation />
-        <Categories />
+        {/* <Innovation />
+        <Categories /> */}
         {/* <AllChatbots /> */}
 
 
