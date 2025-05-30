@@ -17,7 +17,7 @@ export default function Chatbot({ chatbot }: { chatbot: Chatbot }) {
 
                 <div className={styles.stats}>
                     <Messages message={chatbot.messages} />
-                    <Likes userLikes={chatbot.likes} userVote={chatbot.voted} alias={chatbot.alias} email={''} />
+                    <Likes userLikes={chatbot.likes} userVote={chatbot.voted} alias={chatbot.alias} />
                 </div>
             </div>
         </div>

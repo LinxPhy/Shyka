@@ -11,7 +11,7 @@ export default function Flavour({ chatbots }: { chatbots: Chatbot[] }) {
                 <h2>Flavour of the week</h2>
             </div>
             <Carousel>
-                <div className={styles.chatbots}>
+                <div className={styles.flavourChatbot}>
                     {chatbots && chatbots.map((chatbot: Chatbot) => (
                         <Link href={`/chat/${chatbot.alias}`} key={chatbot.chatbot_id}>
                             <Chatbot chatbot={chatbot} />

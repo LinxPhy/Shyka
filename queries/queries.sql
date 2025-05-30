@@ -1,0 +1,122 @@
+
+-- chatbot
+WITH log_counts AS (
+  SELECT alias, COUNT(*) AS messages
+  FROM logs
+  GROUP BY alias
+),
+like_counts AS (
+  SELECT alias, COUNT(*) AS likes
+  FROM likes
+  GROUP BY alias
+),
+user_votes AS (
+  SELECT alias
+  FROM likes
+  WHERE email= '0c84f962-f83f-4201-9e03-c9400ccdf09e'
+)
+SELECT 
+c.*,
+COALESCE(lc.messages, 0) AS messages,
+COALESCE(lk.likes, 0) AS likes,
+CASE WHEN uv.alias IS NOT NULL THEN TRUE ELSE FALSE END AS voted
+FROM chatbots c
+LEFT JOIN log_counts lc ON c.alias = lc.alias
+LEFT JOIN like_counts lk ON c.alias = lk.alias
+LEFT JOIN user_votes uv ON c.alias = uv.alias
+WHERE c.alias = ?;
+
+-- categories
+SELECT DISTINCT category FROM chatbots ORDER BY category ASC
+
+-- category
+WITH log_counts AS (
+  SELECT alias, COUNT(*) AS messages
+  FROM logs
+  GROUP BY alias
+),
+like_counts AS (
+  SELECT alias, COUNT(*) AS likes
+  FROM likes
+  GROUP BY alias
+),
+user_votes AS (
+  SELECT alias
+  FROM likes
+  WHERE email= '0c84f962-f83f-4201-9e03-c9400ccdf09e'
+)
+SELECT 
+c.*,
+COALESCE(lc.messages, 0) AS messages,
+COALESCE(lk.likes, 0) AS likes,
+CASE WHEN uv.alias IS NOT NULL THEN TRUE ELSE FALSE END AS voted
+FROM chatbots c
+LEFT JOIN log_counts lc ON c.alias = lc.alias
+LEFT JOIN like_counts lk ON c.alias = lk.alias
+LEFT JOIN user_votes uv ON c.alias = uv.alias
+ORDER BY c.name ASC
+WHERE c.category = ?
+LIMIT 28;
+
+
+
+
+-- reccomendations
+WITH log_counts AS (
+  SELECT alias, COUNT(*) AS messages
+  FROM logs
+  GROUP BY alias
+),
+like_counts AS (
+  SELECT alias, COUNT(*) AS likes
+  FROM likes
+  GROUP BY alias
+),
+user_votes AS (
+  SELECT alias
+  FROM likes
+  WHERE email= '0c84f962-f83f-4201-9e03-c9400ccdf09e'
+)
+SELECT 
+c.*,
+COALESCE(lc.messages, 0) AS messages,
+COALESCE(lk.likes, 0) AS likes,
+CASE WHEN uv.alias IS NOT NULL THEN TRUE ELSE FALSE END AS voted
+FROM chatbots c
+LEFT JOIN log_counts lc ON c.alias = lc.alias
+LEFT JOIN like_counts lk ON c.alias = lk.alias
+LEFT JOIN user_votes uv ON c.alias = uv.alias
+ORDER BY c.name ASC
+LIMIT 28;
+
+
+
+
+-- search
+WITH log_counts AS (
+  SELECT alias, COUNT(*) AS messages
+  FROM logs
+  GROUP BY alias
+),
+like_counts AS (
+  SELECT alias, COUNT(*) AS likes
+  FROM likes
+  GROUP BY alias
+),
+user_votes AS (
+  SELECT alias
+  FROM likes
+  WHERE email= '0c84f962-f83f-4201-9e03-c9400ccdf09e'
+)
+SELECT 
+c.*,
+COALESCE(lc.messages, 0) AS messages,
+COALESCE(lk.likes, 0) AS likes,
+CASE WHEN uv.alias IS NOT NULL THEN TRUE ELSE FALSE END AS voted
+FROM chatbots c
+LEFT JOIN log_counts lc ON c.alias = lc.alias
+LEFT JOIN like_counts lk ON c.alias = lk.alias
+LEFT JOIN user_votes uv ON c.alias = uv.alias
+WHERE c.name LIKE ?
+ORDER BY c.name ASC
+LIMIT 10;

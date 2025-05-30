@@ -2,25 +2,31 @@
 import Image from "next/image"
 import GreyHeart from '@/app/icons/grey_heart.png'
 import RedHeart from '@/app/icons/red_heart.png'
-import { useState } from "react"
+import { AuthContext } from '../../contextProvider';
+import { useState, useContext, MouseEvent } from "react"
 import { useRouter } from "next/navigation"
+import styles from '../chatbot.module.css'
 import axios from "axios"
 
 const likeButton = async (email: string, alias: string) => {
-    const response = await axios.post(`${process.env.SERVER_URL}/likes`, { email, alias })
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/likes`, { email, alias })
     return response.data
 }
 
-export default function Likes({ userLikes, userVote, alias, email }: { userLikes: number, userVote: number, alias: string, email: string }) {
+export default function Likes({ userLikes, userVote, alias }: { userLikes: number, userVote: number, alias: string }) {
+
 
     const [likes, setLikes] = useState(userLikes)
     const [voted, setVoted] = useState(userVote)
     const [loading, setLoading] = useState(false)
+    const { signedIn, user: { email } } : any = useContext(AuthContext);
     const router = useRouter()
 
-    const handleLike = async () => {
+    const handleLike = async (event: MouseEvent<HTMLImageElement>) => {
+        event.preventDefault();
+        event.stopPropagation()
         if (loading) return
-        if (!email) return router.push('/api/auth/login')
+        if (!signedIn) return router.push('/api/auth/login')
 
         setLoading(true)
 
@@ -38,8 +44,8 @@ export default function Likes({ userLikes, userVote, alias, email }: { userLikes
     }
 
     return (
-        <div>
-            <Image onClick={() => handleLike()} src={voted ? RedHeart : GreyHeart} alt="Heart" width={10} height={10} />
+        <div className={styles.likes}>
+            <Image onClick={(e) => handleLike(e)} src={voted ? RedHeart : GreyHeart} alt="Heart" width={10} height={10} />
             <span>{likes}</span>
         </div>
     )

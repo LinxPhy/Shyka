@@ -1,0 +1,54 @@
+.title {
+    padding: 1rem 0.8rem;
+}
+
+.title h2 {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.chatbots {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.8rem;
+
+}
+
+.categories{
+    display: flex;
+    margin-bottom: 1rem;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+}
+
+.category{
+    background-color: var(--dark);
+    border: none;
+    padding: 0.8rem;
+    border-radius: 1rem;
+    margin-right: 0.5rem;
+    color: var(--white);
+    text-transform: capitalize;
+    border: 1px solid var(--dark);
+}
+
+.category:hover, .active{
+    cursor: pointer;
+    background-color: var(--darker);
+    border: 1px solid var(--light);
+}
+
+.chatbots{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.8rem;
+}
+
+.flavourChatbot{
+    display: flex;
+    overflow-x: hidden;
+    gap: 1rem;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+}

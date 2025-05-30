@@ -12,7 +12,7 @@ export default function Popular({ chatbots }: { chatbots: Chatbot[] }) {
             <div className={styles.chatbots}>
                 {chatbots && chatbots.slice(0, 14).map((chatbot: Chatbot) => (
                     <Link href={`/chat/${chatbot.alias}`} key={chatbot.chatbot_id}>
-                        <Chatbot chatbot={chatbot} />
+                        <Chatbot chatbot={chatbot}/>
                     </Link>
                 ))}
             </div>

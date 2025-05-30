@@ -78,3 +78,11 @@
 }
 
 
+.likes img{
+    position: relative;
+    bottom: -1px;
+}
+
+.stats span{
+    width: 3ch;
+}
