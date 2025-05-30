@@ -1,0 +1,28 @@
+.carousel{
+    position: relative;
+}
+
+.carousel:hover .navigation{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navigation{
+    position: absolute;
+    width: 30px;
+    height: 100%;
+    background-color: hsla(0, 0%, 0%, 0.502);
+    cursor: pointer;
+    display: none;
+}
+
+.left{
+    top: 0;
+    left: 0;
+}
+
+.right{
+    top: 0;
+    right: 0;
+}

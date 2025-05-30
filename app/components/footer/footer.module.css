@@ -1,0 +1,128 @@
+
+.footer{
+    height: auto;
+    width: calc(100% - 220px);
+    float: right;
+    background-color: var(--darker);
+    padding: 3rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 100px;
+    box-shadow: 0px 0px 3px rgb(255 255 255 / 10%);
+}
+
+.footer ul{
+    list-style: none;
+}
+
+.footer h4{
+    font-size: 1rem;
+    color: var(--light);
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+
+.links{
+    display: flex;
+    border-bottom: 1px solid rgb(255 255 255 / 10%);
+    justify-content: space-evenly;
+    padding-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.links div ul{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.links div ul li{
+    color: var(--white);
+    font-weight: 400;
+}
+
+.links div ul li a{
+    font-size: 0.8rem;
+}
+
+.links div ul li a:hover{
+    cursor: pointer;
+    color: var(--light);
+}
+
+.socials{
+    border-bottom: 1px solid rgb(255 255 255 / 10%);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.socials div ul{
+    display: flex;
+    gap: 1rem;
+}
+
+.socials div ul li a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 400;
+    
+}
+
+.copyright{
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.copyright p{
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+@media screen and (max-width: 768px) {
+
+    .footer{
+        width: 100%;
+    }
+
+    .links{
+        justify-content: space-between;
+        gap: 2rem;
+    }
+
+    .links div ul{
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .links ul li{
+        flex-basis: 45%;
+    
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .links{
+        flex-direction: column;
+    }
+
+    .links h4{
+        border-bottom: 1px solid var(--light);
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .copyright{
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
