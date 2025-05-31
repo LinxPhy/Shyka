@@ -13,7 +13,7 @@ like_counts AS (
 user_votes AS (
   SELECT alias
   FROM likes
-  WHERE email= '0c84f962-f83f-4201-9e03-c9400ccdf09e'
+  WHERE email= 'lin.aboagye@gmail.com'
 )
 SELECT 
 c.*,
@@ -43,7 +43,7 @@ like_counts AS (
 user_votes AS (
   SELECT alias
   FROM likes
-  WHERE email= '0c84f962-f83f-4201-9e03-c9400ccdf09e'
+  WHERE email= 'lin.aboagye@gmail.com'
 )
 SELECT 
 c.*,
@@ -75,7 +75,7 @@ like_counts AS (
 user_votes AS (
   SELECT alias
   FROM likes
-  WHERE email= '0c84f962-f83f-4201-9e03-c9400ccdf09e'
+  WHERE email= 'lin.aboagye@gmail.com'
 )
 SELECT 
 c.*,
@@ -89,7 +89,62 @@ LEFT JOIN user_votes uv ON c.alias = uv.alias
 ORDER BY c.name ASC
 LIMIT 28;
 
+-- likes
 
+WITH log_counts AS (
+  SELECT alias, COUNT(*) AS messages
+  FROM logs
+  GROUP BY alias
+),
+like_counts AS (
+  SELECT alias, COUNT(*) AS likes
+  FROM likes
+  GROUP BY alias
+),
+user_votes AS (
+  SELECT alias
+  FROM likes
+  WHERE email= 'lin.aboagye@gmail.com'
+)
+SELECT 
+c.*,
+COALESCE(lc.messages, 0) AS messages,
+COALESCE(lk.likes, 0) AS likes,
+CASE WHEN uv.alias IS NOT NULL THEN TRUE ELSE FALSE END AS voted
+FROM chatbots c
+LEFT JOIN log_counts lc ON c.alias = lc.alias
+LEFT JOIN like_counts lk ON c.alias = lk.alias
+LEFT JOIN user_votes uv ON c.alias = uv.alias
+ORDER BY c.name ASC
+LIMIT 28;
+
+-- reccomendations
+WITH log_counts AS (
+  SELECT alias, COUNT(*) AS messages
+  FROM logs
+  GROUP BY alias
+),
+like_counts AS (
+  SELECT alias, COUNT(*) AS likes
+  FROM likes
+  GROUP BY alias
+),
+user_votes AS (
+  SELECT alias
+  FROM likes
+  WHERE email= 'lin.aboagye@gmail.com'
+)
+SELECT 
+c.*,
+COALESCE(lc.messages, 0) AS messages,
+COALESCE(lk.likes, 0) AS likes,
+CASE WHEN uv.alias IS NOT NULL THEN TRUE ELSE FALSE END AS voted
+FROM chatbots c
+LEFT JOIN log_counts lc ON c.alias = lc.alias
+LEFT JOIN like_counts lk ON c.alias = lk.alias
+LEFT JOIN user_votes uv ON c.alias = uv.alias
+ORDER BY c.name ASC
+LIMIT 28;
 
 
 -- search
@@ -106,7 +161,7 @@ like_counts AS (
 user_votes AS (
   SELECT alias
   FROM likes
-  WHERE email= '0c84f962-f83f-4201-9e03-c9400ccdf09e'
+  WHERE email= 'lin.aboagye@gmail.com'
 )
 SELECT 
 c.*,

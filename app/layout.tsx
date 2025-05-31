@@ -3,8 +3,9 @@ import { Quicksand, Bungee } from "next/font/google";
 import Header from "@/app/components/header/header";
 import Footer from "@/app/components/footer/footer";
 import { auth } from "./auth";
-import "./globals.css";
 import { ContextProvider } from "./components/contextProvider";
+import ReactQueryProvider from "./components/reactQueryProvider";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Shyka | AI Chatbots",
@@ -21,9 +22,11 @@ export default async function RootLayout({ children, }: Readonly<{ children: Rea
     <html lang="en">
       <body className={` ${bungee.variable} ${quicksand.variable}`}>
         <ContextProvider auth={session}>
-          <Header />
-          {children}
-          <Footer />
+          <ReactQueryProvider>
+            <Header />
+            {children}
+            <Footer />
+          </ReactQueryProvider>
         </ContextProvider>
       </body>
     </html>

@@ -16,8 +16,8 @@ export default async function Home() {
     return (
         <main>
             <div className='content' style={{ gap: '5rem' }}>
-                {/* <Reccomended chatbots={chatbots} category={categories} />
-                <Flavour chatbots={flavours} /> */}
+                <Reccomended chatbots={chatbots} category={categories} />
+                <Flavour chatbots={flavours} />
                 <Popular chatbots={chatbots} />
             </div>
         </main>

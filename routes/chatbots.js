@@ -89,6 +89,20 @@ app.get('/api/flavour', async (req, res) => {
 
 })
 
+app.get('/api/chatbot_likes', async (req, res) => {
+    
+    try {
+        const result = await generateQuery(queries.likes)
+        res.send(result)
+    } catch (e) {
+        console.log(e)
+        res.sendStatus(500)
+    }
+
+
+
+})
+
 app.get('/api/explore', async (req, res) => {
 
     try {
