@@ -14,17 +14,17 @@ async function getChatbots({ category, user_id }: { category: string, user_id: s
 
 export default function Reccomended({ chatbots, category }: { chatbots: Chatbot[], category: string[] }) {
 
+    const { signedIn, user: { user_id } } = useContext(AuthContext) as AuthContext;
+
     const query = useQueryClient();
     const [selection, setSelection] = useState('reccomended')
 
-    const { signedIn, user: { user_id } } = useContext(AuthContext) as AuthContext;
-
     useEffect(() => {
-        query.setQueryData(['reccomended'], chatbots);
-    }, [chatbots, query]);
+        query.setQueryData(['reccomended', selection], chatbots);
+    }, [chatbots, selection, query]);
 
 
-    const { data : items, isLoading, error } = useQuery({
+    const { data: items, isLoading, error } = useQuery({
         queryKey: ['reccomended', selection],
         queryFn: async () => {
             if (selection === 'reccomended') {
@@ -33,7 +33,7 @@ export default function Reccomended({ chatbots, category }: { chatbots: Chatbot[
                 return await getChatbots({ category: selection, user_id })
             }
         },
-        initialData: chatbots,
+        placeholderData: chatbots,
     })
 
     if (isLoading) return <div>Loading...</div>

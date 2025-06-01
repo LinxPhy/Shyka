@@ -1,9 +1,25 @@
+'use client'
 import Link from "next/link"
 import Chatbot from "@/app/components/chatbot/chatbot"
 import styles from '@/app/(pages)/(home)/home.module.css'
 import Carousel from "@/app/components/carousel/carousel"
+import { useContext } from "react";
+import { AuthContext } from '@/app/components/contextProvider'
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export default function Flavour({ chatbots }: { chatbots: Chatbot[] }) {
+
+    const { signedIn, user: { user_id } } = useContext(AuthContext) as AuthContext;
+
+    const query = useQueryClient();
+
+    const { data } = useQuery({
+        queryKey: ['flavour'],
+        queryFn: () => {
+            return chatbots
+        },
+        initialData: chatbots,
+    })
 
     return (
         <section className={styles.container}>
@@ -12,7 +28,7 @@ export default function Flavour({ chatbots }: { chatbots: Chatbot[] }) {
             </div>
             <Carousel>
                 <div className={styles.flavourChatbot}>
-                    {chatbots && chatbots.map((chatbot: Chatbot) => (
+                    {data && data.map((chatbot: Chatbot) => (
                         <Link href={`/chat/${chatbot.alias}`} key={chatbot.chatbot_id}>
                             <Chatbot chatbot={chatbot} />
                         </Link>

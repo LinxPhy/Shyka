@@ -5,14 +5,14 @@ const app = express()
 app.post('/api/likes', async (req, res) => {
     
     try {
-        const { email, alias } = req.body
-        if (!email || !alias) return res.sendStatus(400)
+        const { user_id, alias } = req.body
+        if (!user_id || !alias) return res.sendStatus(400)
         
         let voted = 0
-        const removeLike = await generateQuery('DELETE FROM likes WHERE email = ? AND alias = ?', [email, alias])
+        const removeLike = await generateQuery('DELETE FROM likes WHERE user_id = ? AND alias = ?', [user_id, alias])
         
         if (removeLike.affectedRows === 0){
-            await generateQuery('INSERT INTO likes (email, alias) VALUES (?, ?)', [email, alias])
+            await generateQuery('INSERT INTO likes (user_id, alias) VALUES (?, ?)', [user_id, alias])
             voted = 1
         }
 
