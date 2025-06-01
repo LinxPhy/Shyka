@@ -15,11 +15,11 @@ const likeButton = async (email: string, alias: string) => {
 
 export default function Likes({ userLikes, userVote, alias }: { userLikes: number, userVote: number, alias: string }) {
 
+    const { signedIn, user: { email } } : any = useContext(AuthContext);
 
     const [likes, setLikes] = useState(userLikes)
     const [voted, setVoted] = useState(userVote)
-    const [loading, setLoading] = useState(false)
-    const { signedIn, user: { email } } : any = useContext(AuthContext);
+    const [loading, setLoading] = useState(false)    
     const router = useRouter()
 
     const handleLike = async (event: MouseEvent<HTMLImageElement>) => {

@@ -11,7 +11,7 @@ const loadQueries = (filename) => {
     const sqlFile = fs.readFileSync(filePath, 'utf8');
 
     const queries = {};
-    const parts = sqlFile.split('-- ').slice(1); 
+    const parts = sqlFile.split('-- ').slice(1);
 
     for (const part of parts) {
         const [name, ...queryLines] = part.split('\n');
@@ -53,8 +53,9 @@ app.get('/api/categories/:category', async (req, res) => {
 
     try {
         const category = req.params.category
-        const query = 'SELECT * FROM chatbots WHERE category = ? ORDER BY name ASC LIMIT 28'
-        const result = await generateQuery(query, [category])
+        const user_id = req.query.user_id
+
+        const result = await generateQuery(queries.category, [user_id, category])
         res.send(result)
 
     } catch (e) {
@@ -67,7 +68,8 @@ app.get('/api/categories/:category', async (req, res) => {
 app.get('/api/reccomendations', async (req, res) => {
 
     try {
-        const result = await generateQuery(queries.reccomendations)
+        const user_id = req.query.user_id
+        const result = await generateQuery(queries.reccomendations, [user_id])
         res.send(result)
     } catch (e) {
         console.log(e)
@@ -79,8 +81,8 @@ app.get('/api/reccomendations', async (req, res) => {
 app.get('/api/flavour', async (req, res) => {
 
     try {
-        const query = 'SELECT * FROM chatbots ORDER BY name ASC'
-        const result = await generateQuery(query)
+        const user_id = req.query.user_id
+        const result = await generateQuery(queries.flavour, [user_id])
         res.send(result)
     } catch (e) {
         console.log(e)
@@ -89,8 +91,22 @@ app.get('/api/flavour', async (req, res) => {
 
 })
 
+app.get('/api/popular', async (req, res) => {
+
+    try {
+        const user_id = req.query.user_id
+        const result = await generateQuery(queries.popular, [user_id])
+        res.send(result)
+    } catch (e) {
+        console.log(e)
+        res.sendStatus(500)
+    }
+
+})
+
+
 app.get('/api/chatbot_likes', async (req, res) => {
-    
+
     try {
         const result = await generateQuery(queries.likes)
         res.send(result)

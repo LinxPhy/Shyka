@@ -42,9 +42,9 @@ CREATE TABLE tokens (
 CREATE TABLE likes (
     like_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     alias varchar(255) NOT NULL,
-    email varchar(255) NOT NULL,
-    UNIQUE(alias, email),
-    FOREIGN KEY (email) REFERENCES users(email) ON DELETE CASCADE,
+    user_id varchar(255) NOT NULL,
+    UNIQUE(alias, user_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (alias) REFERENCES chatbots(alias) ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 

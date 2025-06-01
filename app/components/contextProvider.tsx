@@ -8,6 +8,7 @@ export function ContextProvider({ auth, children }: { auth: any, children: React
 
     let signedIn : boolean = false
     let user : User = {
+        user_id: '',
         name: '',
         email: '',
         image: ''
@@ -16,13 +17,11 @@ export function ContextProvider({ auth, children }: { auth: any, children: React
     if (auth?.user) {
         signedIn = true
         
-        const { name, email, image } = auth?.user || {}
-        user = { name, email, image }
+        const { user_id, name, email, image } = auth?.user || {}
+        user = { user_id, name, email, image }
 
     }
-
     
-
     return (
       <AuthContext.Provider value={{ signedIn, user }}>
         {children}

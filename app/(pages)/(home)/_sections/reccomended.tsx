@@ -1,13 +1,14 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { AuthContext } from '@/app/components/contextProvider'
 import Link from 'next/link'
 import Chatbot from "@/app/components/chatbot/chatbot"
 import styles from '@/app/(pages)/(home)/home.module.css'
 import axios from 'axios'
 
-async function getChatbots({ category }: { category: string }) {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/categories/${category}`)
+async function getChatbots({ category, user_id }: { category: string, user_id: string }) {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/categories/${category}`, { params: { user_id } })
     return response.data
 }
 
@@ -16,22 +17,27 @@ export default function Reccomended({ chatbots, category }: { chatbots: Chatbot[
     const query = useQueryClient();
     const [selection, setSelection] = useState('reccomended')
 
+    const { signedIn, user: { user_id } } = useContext(AuthContext) as AuthContext;
+
     useEffect(() => {
         query.setQueryData(['reccomended'], chatbots);
     }, [chatbots, query]);
 
 
-    const { data : items, isLoading } = useQuery({
+    const { data : items, isLoading, error } = useQuery({
         queryKey: ['reccomended', selection],
         queryFn: async () => {
             if (selection === 'reccomended') {
                 return chatbots
             } else {
-                return await getChatbots({ category: selection })
+                return await getChatbots({ category: selection, user_id })
             }
         },
         initialData: chatbots,
     })
+
+    if (isLoading) return <div>Loading...</div>
+    if (error) return <div>Error</div>
 
     return (
         <section className={styles.container}>

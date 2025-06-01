@@ -7,7 +7,7 @@ import { AuthContext } from '../../contextProvider';
 
 export default function LoginButton() {
 
-    const { signedIn, user: { name, email, image } } : any = useContext(AuthContext);
+    const { signedIn, user: { name, image } } = useContext(AuthContext) as AuthContext;
     const [loading, setLoading] = useState(false)
 
     async function handleGoogleSignin() {

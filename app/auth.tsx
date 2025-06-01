@@ -32,6 +32,17 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
             if (login.status === 200) return true
             return false
         },
+
+        async session({ session, token }) {
+            (session.user as any).user_id = token.id as string
+            return session
+        },
+
+
+        async jwt({ token, profile }) {
+            if (profile) token.id = profile.sub
+            return token
+        },
     },
     ...authOptions
 });

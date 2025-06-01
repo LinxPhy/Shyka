@@ -29,7 +29,18 @@ interface Auth {
 }
 
 interface User {
+    user_id: string,
     name: string,
     email: string,
     image: string
+}
+
+interface AuthContext {
+    signedIn: boolean
+    user: {
+        user_id: string,
+        name: string,
+        email: string,
+        image: string
+    }
 }
