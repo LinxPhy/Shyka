@@ -1,5 +1,5 @@
 import Image from "next/image"
-import styles from "./body.module.css"
+import styles from '../chat.module.css'
 
 export default function Body({ chatbot, logs }: { chatbot: Chatbot, logs: Log[] }) {
 

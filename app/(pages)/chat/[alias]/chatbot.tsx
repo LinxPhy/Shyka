@@ -1,11 +1,11 @@
 'use client'
 import axios from "axios"
-import Header from "./header/header"
-import Footer from "./footer/footer"
-import Body from "./body/body"
+import Header from "./sections/header"
+import Footer from "./sections/footer"
+import Body from "./sections/body"
 import styles from "./chat.module.css"
 import { useQuery } from "@tanstack/react-query"
-import Description from "./description/description"
+import Description from "./sections/description"
 import { useContext } from "react"
 import { AuthContext } from "@/app/components/contextProvider"
 

@@ -1,11 +1,10 @@
 import { useState } from "react"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { useSession } from "next-auth/react"
 import axios from "axios"
 import Send from '@/app/icons/send.png'
 import Heart from '@/app/icons/heart.png'
 import Image from "next/image"
-import styles from "./footer.module.css"
+import styles from '../chat.module.css'
 
 export default function Footer({ chatbot }: { chatbot: Chatbot }) {
 

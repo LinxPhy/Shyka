@@ -5,6 +5,7 @@ import Chatbot from "./chatbot"
 import Image from "next/image"
 import ReactQueryProvider from "@/app/components/reactQueryProvider"
 import { SessionProvider } from "next-auth/react"
+import { auth } from "@/app/auth"
 
 
 export default async function Chat(request: NextRequest) {
@@ -12,7 +13,10 @@ export default async function Chat(request: NextRequest) {
     const alias = await (request as any)?.params
     const aliasName = alias?.alias
 
-    const data = await axios.get(`${process.env.SERVER_URL}/chatbot/${aliasName}`)
+    const session = await auth() 
+    const user_id = session?.user?.user_id;
+
+    const data = await axios.get(`${process.env.SERVER_URL}/chatbot/${aliasName}`, { params: { user_id } })
     const chatbot = data.data
 
     return (

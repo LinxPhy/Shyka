@@ -27,7 +27,8 @@ const queries = loadQueries('../queries/queries.sql');
 app.get('/api/chatbot/:alias', async (req, res) => {
     try {
         const alias = req.params.alias
-        const result = await generateQuery(queries.chatbot, [alias])
+        const user_id = req.query.user_id
+        const result = await generateQuery(queries.chatbot, [user_id, alias])
         res.send(result[0])
     } catch (e) {
         console.log(e)

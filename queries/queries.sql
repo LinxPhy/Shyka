@@ -13,7 +13,7 @@ like_counts AS (
 user_votes AS (
   SELECT alias
   FROM likes
-  WHERE email= 'lin.aboagye@gmail.com'
+  WHERE user_id = ?
 )
 SELECT 
 c.*,
@@ -72,7 +72,7 @@ like_counts AS (
 user_votes AS (
   SELECT alias
   FROM likes
-  WHERE user_id= ?
+  WHERE user_id = ?
 )
 SELECT 
 c.*,

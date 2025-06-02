@@ -1,6 +1,6 @@
 import Chat from '@/app/icons/chat.png'
 import Heart from '@/app/icons/heart.png'
-import styles from "./header.module.css"
+import styles from '../chat.module.css'
 import Image from "next/image"
 
 export default function Header({ chatbot }: { chatbot: Chatbot }) {

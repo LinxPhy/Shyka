@@ -1,4 +1,4 @@
-import styles from "./description.module.css"
+import styles from '../chat.module.css'
 
 export default function Description({ chatbot }: { chatbot: Chatbot }) {
     
