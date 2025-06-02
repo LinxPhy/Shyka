@@ -21,7 +21,7 @@ export default function LoginButton() {
     }
 
     return (
-        <li>
+        <li className={styles.login}>
 
             {signedIn ?
                 <div className={styles.user} onClick={() => signOut()}>

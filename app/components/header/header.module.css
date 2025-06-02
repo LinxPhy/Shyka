@@ -127,6 +127,15 @@
         display: none;
     }
 
+    .login p{
+        display: none;
+    }
+
+    .user{
+        background-color: transparent;
+        margin-top: 0;
+    }
+
 }
 
 @media screen and (max-width: 550px) {

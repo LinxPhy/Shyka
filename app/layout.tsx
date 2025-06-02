@@ -6,6 +6,7 @@ import { auth } from "./auth";
 import { ContextProvider } from "./components/contextProvider";
 import ReactQueryProvider from "./components/reactQueryProvider";
 import "./globals.css";
+import TopBar from "./components/top-bar/top-bar";
 
 export const metadata: Metadata = {
   title: "Shyka | AI Chatbots",
@@ -23,6 +24,7 @@ export default async function RootLayout({ children, }: Readonly<{ children: Rea
       <body className={` ${bungee.variable} ${quicksand.variable}`}>
         <ContextProvider auth={session}>
           <ReactQueryProvider>
+            <TopBar />
             <Header />
             {children}
             <Footer />
