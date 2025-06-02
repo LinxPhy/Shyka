@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation"
 import styles from '../chatbot.module.css'
 import axios from "axios"
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import handleAmount from "../../handleAmount";
 
 const likeButton = async (user_id: string, alias: string) => {
     const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/likes`, { user_id, alias })
@@ -61,12 +62,7 @@ export default function Likes({ userLikes, userVote, alias }: { userLikes: numbe
         onSuccess: async (data) => {
             if (!data) return
             const { likes, voted } = data
-
-            // setLikes(likes);
-            // setVoted(voted);
-
             const queryCache = queryClient.getQueryCache()
-            console.log(queryCache)
 
             for (const query of queryCache.getAll()) {
                 const queryKey = query.queryKey
@@ -108,30 +104,8 @@ export default function Likes({ userLikes, userVote, alias }: { userLikes: numbe
     return (
         <div className={styles.likes}>
             <Image onClick={(e) => handleLike(e)} src={voted ? RedHeart : GreyHeart} alt="Heart" width={10} height={10} />
-            <span>{likes}</span>
+            <span>{handleAmount(likes)}</span>
         </div>
     )
 
 }
-
-
-// const handleLike = async (event: MouseEvent<HTMLImageElement>) => {
-//     event.preventDefault();
-//     event.stopPropagation()
-//     if (loading) return
-//     if (!signedIn) return router.push('/api/auth/login')
-
-//     setLoading(true)
-
-//     try {
-//         const response = await likeButton(user_id, alias)
-//         if (response) {
-//             setLikes(response.likes)
-//             setVoted(response.voted)
-//         }
-//     } catch (err) {
-//         console.error("Failed to like:", err)
-//     } finally {
-//         setLoading(false)
-//     }
-// }

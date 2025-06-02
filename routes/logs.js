@@ -79,11 +79,10 @@ async function getChatbotMessage(alias) {
 app.post('/api/save_message', async (req, res) => {
 
     try {
-        const { assistantMessage, userMessage, alias } = req.body
-        const uid = '0c84f962-f83f-4201-9e03-c9400ccdf09e'
+        const { assistantMessage, userMessage, alias, user_id } = req.body
 
         const query = 'INSERT INTO logs (user_id, alias, role, content) VALUES (?, ?, ?, ?), (?, ?, ?, ?)'
-        await generateQuery(query, [uid, alias, "assistant", assistantMessage, uid, alias, "user", userMessage])
+        await generateQuery(query, [user_id, alias, "assistant", assistantMessage, user_id, alias, "user", userMessage])
         res.sendStatus(200)
 
     } catch (e) {

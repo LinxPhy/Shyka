@@ -1,11 +1,12 @@
 import Chat from '@/app/icons/chat.png'
-import Heart from '@/app/icons/heart.png'
+import Heart from '@/app/icons/grey_heart.png'
 import styles from '../chat.module.css'
 import Image from "next/image"
+import Likes from '@/app/components/chatbot/stats/likes'
 
 export default function Header({ chatbot }: { chatbot: Chatbot }) {
 
-    const { image, name } = chatbot
+    const { image, name } = chatbot 
 
     return (
         <section className={styles.header}>
@@ -20,10 +21,7 @@ export default function Header({ chatbot }: { chatbot: Chatbot }) {
 
                 <span>|</span>
 
-                <div>
-                    <Image src={Heart} alt="" width={10} height={10} />
-                    <span>10.5k</span>
-                </div>
+                <Likes userLikes={chatbot.likes} userVote={chatbot.voted} alias={chatbot.alias} />
             </div>
         </section>
     )

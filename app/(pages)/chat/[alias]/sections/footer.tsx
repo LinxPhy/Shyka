@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { AuthContext } from "@/app/components/contextProvider"
 import axios from "axios"
 import Send from '@/app/icons/send.png'
 import Heart from '@/app/icons/heart.png'
@@ -7,6 +8,8 @@ import Image from "next/image"
 import styles from '../chat.module.css'
 
 export default function Footer({ chatbot }: { chatbot: Chatbot }) {
+
+    const { signedIn, user: { user_id } }: any = useContext(AuthContext);
 
     const { alias } = chatbot
 
@@ -18,8 +21,7 @@ export default function Footer({ chatbot }: { chatbot: Chatbot }) {
 
         mutationFn: async () => { 
             setDisabled(true)
-
-            const uid = localStorage.getItem('uid')
+            
             logs.setQueryData(['logs', alias], (oldData: Log[]) => [{role: 'user', content: message}, ...oldData])
             
             const completion = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/completion`, {
@@ -45,7 +47,7 @@ export default function Footer({ chatbot }: { chatbot: Chatbot }) {
 
         onSuccess: async(data) => { 
             const { assistantMessage, userMessage, alias } = data
-            await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/save_message`, { assistantMessage, userMessage, alias })
+            await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/save_message`, { assistantMessage, userMessage, alias, user_id })
             setMessage('')
         },
         onError: (error) => console.log(error),
@@ -61,13 +63,13 @@ export default function Footer({ chatbot }: { chatbot: Chatbot }) {
                 value={message}
                 className={styles.footer}
                 onChange={(e) => setMessage(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && disabled === false && mutation.mutate()}
+                onKeyDown={(e) => e.key === 'Enter' && disabled === false && message.length > 0 && mutation.mutate()}
                 placeholder="Search"
                 disabled={disabled}
                 maxLength={300}
             />
             <div className={styles.icons}>
-                <Image src={Send} alt="" width={16} height={16} onClick={() => mutation.mutate()} />
+                <Image src={Send} alt="" width={16} height={16} onClick={() => message.length > 0 && mutation.mutate()} />
                 <span>|</span>
                 <Image src={Heart} alt="" width={16} height={16} />
             </div>
