@@ -56,7 +56,7 @@ LEFT JOIN like_counts lk ON c.alias = lk.alias
 LEFT JOIN user_votes uv ON c.alias = uv.alias
 WHERE c.category = ?
 ORDER BY c.name ASC
-LIMIT 28;
+LIMIT 3;
 
 -- reccomendations
 WITH log_counts AS (
@@ -84,7 +84,7 @@ LEFT JOIN log_counts lc ON c.alias = lc.alias
 LEFT JOIN like_counts lk ON c.alias = lk.alias
 LEFT JOIN user_votes uv ON c.alias = uv.alias
 ORDER BY c.name ASC
-LIMIT 28;
+LIMIT 3;
 
 -- flavour
 WITH log_counts AS (

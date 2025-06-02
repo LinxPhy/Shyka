@@ -55,6 +55,11 @@ app.get('/api/categories/:category', async (req, res) => {
         const category = req.params.category
         const user_id = req.query.user_id
 
+        if (category === 'reccomended'){
+            const result = await generateQuery(queries.reccomendations, [user_id])
+            return res.send(result)
+        }
+
         const result = await generateQuery(queries.category, [user_id, category])
         res.send(result)
 

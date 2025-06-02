@@ -68,6 +68,7 @@ export default function Likes({ userLikes, userVote, alias }: { userLikes: numbe
             // setVoted(voted);
 
             const queryCache = queryClient.getQueryCache()
+            console.log(queryCache)
 
             for (const query of queryCache.getAll()) {
                 const queryKey = query.queryKey

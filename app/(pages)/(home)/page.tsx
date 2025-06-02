@@ -17,14 +17,15 @@ export default async function Home() {
     const chatbots = reccomendations.data
     const categories = categoryList.data
     const flavours = flavourList.data
+    const popular = popularList.data
 
 
     return (
         <main>
             <div className='content' style={{ gap: '5rem' }}>
                 <Reccomended chatbots={chatbots} category={categories} />
-                <Flavour chatbots={flavours} />
-                <Popular chatbots={chatbots} />
+                <Flavour chatbots={flavours} /> 
+                <Popular chatbots={popular} /> 
             </div>
         </main>
     );

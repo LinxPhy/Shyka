@@ -10,11 +10,12 @@
 
 .navigation{
     position: absolute;
-    width: 30px;
+    width: 40px;
     height: 100%;
     background-color: hsla(0, 0%, 0%, 0.502);
     cursor: pointer;
     display: none;
+    z-index: 1000;
 }
 
 .left{
@@ -25,4 +26,15 @@
 .right{
     top: 0;
     right: 0;
+}
+
+@media screen and (max-width: 600px) {
+    .navigation{
+        display: none;
+    }
+
+    .carousel:hover .navigation{
+        display: none;
+    }
+    
 }

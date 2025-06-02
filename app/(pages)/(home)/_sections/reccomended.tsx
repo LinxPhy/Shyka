@@ -1,6 +1,6 @@
 'use client'
 import { useContext, useEffect, useState } from 'react'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { keepPreviousData, useQuery, useQueryClient } from '@tanstack/react-query'
 import { AuthContext } from '@/app/components/contextProvider'
 import Link from 'next/link'
 import Chatbot from "@/app/components/chatbot/chatbot"
@@ -17,23 +17,31 @@ export default function Reccomended({ chatbots, category }: { chatbots: Chatbot[
     const { signedIn, user: { user_id } } = useContext(AuthContext) as AuthContext;
 
     const query = useQueryClient();
+    const [enable, setEnable] = useState(false)
     const [selection, setSelection] = useState('reccomended')
 
     useEffect(() => {
         query.setQueryData(['reccomended', selection], chatbots);
     }, [chatbots, selection, query]);
 
+    useEffect(() => {
+        if (selection === 'reccomended') setEnable(true);
+    }, [selection]);
+
 
     const { data: items, isLoading, error } = useQuery({
         queryKey: ['reccomended', selection],
         queryFn: async () => {
             if (selection === 'reccomended') {
-                return chatbots
+                return await getChatbots({ category: 'reccomended', user_id })
             } else {
                 return await getChatbots({ category: selection, user_id })
             }
         },
-        placeholderData: chatbots,
+        // placeholderData: (prev) => prev
+        placeholderData: keepPreviousData,
+        initialData: selection === 'reccomended' ? chatbots : undefined,
+        enabled: enable
     })
 
     if (isLoading) return <div>Loading...</div>
