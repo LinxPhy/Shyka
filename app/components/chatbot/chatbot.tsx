@@ -7,7 +7,7 @@ export default function Chatbot({ chatbot }: { chatbot: Chatbot }) {
 
     return (
         <div className={styles.chatbot} key={chatbot.chatbot_id}>
-            <Image className={styles.chatbot_image} src={chatbot.image} alt={chatbot.name} width={1664} height={2304} quality={100} />
+            <Image className={styles.chatbot_image} src={chatbot.image} width={231} height={320} alt={chatbot.name}  quality={100} />
 
             <div className={styles.info}>
                 <div className={styles.name}>

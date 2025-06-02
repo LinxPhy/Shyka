@@ -20,8 +20,6 @@ export default function Likes({ userLikes, userVote, alias }: { userLikes: numbe
 
     const queryClient = useQueryClient();
 
-    // const [likes, setLikes] = useState(userLikes)
-    // const [voted, setVoted] = useState(userVote)
     const [loading, setLoading] = useState(false)
     const router = useRouter()
 
