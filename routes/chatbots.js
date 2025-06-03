@@ -113,8 +113,13 @@ app.get('/api/popular', async (req, res) => {
 
 app.get('/api/chatbot_likes', async (req, res) => {
 
-    try {
-        const result = await generateQuery(queries.likes)
+    try {   
+        const user_id = req.query.user_id
+        if (!user_id) return res.sendStatus(400)
+
+        // const page = req.query.page
+
+        const result = await generateQuery(queries.likes, [user_id])
         res.send(result)
     } catch (e) {
         console.log(e)

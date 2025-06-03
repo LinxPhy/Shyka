@@ -129,7 +129,7 @@ like_counts AS (
 user_votes AS (
   SELECT alias
   FROM likes
-  WHERE user_id= ?
+  WHERE user_id = ?
 )
 SELECT 
 c.*,
@@ -157,7 +157,7 @@ like_counts AS (
 user_votes AS (
   SELECT alias
   FROM likes
-  WHERE email= 'lin.aboagye@gmail.com'
+  WHERE user_id = ?
 )
 SELECT 
 c.*,
@@ -168,8 +168,9 @@ FROM chatbots c
 LEFT JOIN log_counts lc ON c.alias = lc.alias
 LEFT JOIN like_counts lk ON c.alias = lk.alias
 LEFT JOIN user_votes uv ON c.alias = uv.alias
+WHERE lk.likes > 0
 ORDER BY c.name ASC
-LIMIT 28;
+LIMIT 10;
 
 -- recent
 WITH log_counts AS (

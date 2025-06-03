@@ -1,4 +1,5 @@
 
+
 .title{
     padding: 1rem 0.8rem;
     display: flex;
@@ -9,10 +10,4 @@
 .title h1{
     font-size: 1.2rem;
     font-weight: 500;
-}
-
-.chatbots{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 0.8rem;
 }

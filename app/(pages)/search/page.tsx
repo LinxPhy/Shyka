@@ -56,7 +56,7 @@ export default function Search() {
             <div className='content'>
 
                 <section className={styles.title}>
-                    <h2>Search</h2>
+                    <h1>Search</h1>
                     <span>{data.length} results</span>
                 </section>
 
