@@ -121,9 +121,31 @@ app.get('/api/chatbot_likes', async (req, res) => {
         res.sendStatus(500)
     }
 
+})
 
+
+app.get('/api/recent', async (req, res) => {
+    
+    try {
+
+        const user_id = req.query.user_id
+        const recent = req.query.recent
+        const data = recent.split(',')
+
+        if (data.length > 10) {
+            data.splice(10)
+        }
+
+        const result = await generateQuery(queries.recent, [user_id, data])
+        res.send(result)
+
+    } catch (e) {
+        console.log(e)
+        res.sendStatus(500)
+    }
 
 })
+
 
 app.get('/api/explore', async (req, res) => {
 
@@ -144,8 +166,9 @@ app.get('/api/explore', async (req, res) => {
 app.get('/api/search/:query', async (req, res) => {
 
     try {
+        const user_id = req.query.user_id
         const search = req.params.query
-        const result = await generateQuery(queries.search, [`%${search}%`])
+        const result = await generateQuery(queries.search, [user_id, `%${search}%`])
         res.send(result)
 
     } catch (e) {

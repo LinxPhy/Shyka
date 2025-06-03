@@ -16,7 +16,7 @@ const getLogs = async (alias: string, user_id: string) => {
 
 export default function Chatbot({ chatbot }: { chatbot: Chatbot }) {
 
-    const { signedIn, user: { user_id } }: any = useContext(AuthContext);
+    const { signedIn, user: { user_id } } = useContext(AuthContext) as AuthContext;
 
     const alias = chatbot.alias
 
