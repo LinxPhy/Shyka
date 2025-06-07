@@ -1,11 +1,10 @@
-
-.image{
+.image {
     position: relative;
 }
 
-.profile img{
+.image img {
     width: 100%;
-    
+
 }
 
 /* .image::after{
@@ -20,7 +19,7 @@
     background: linear-gradient(0deg, rgba(18, 18, 20, .9) -9.48%, rgba(18, 18, 20, .9) 70.08%, rgba(18, 18, 20, 0) 99.2%);
 } */
 
-.info{
+.info {
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -29,13 +28,13 @@
     border-bottom: 1px solid rgb(255 255 255 / 10%);
 }
 
-.description{
+.description {
     font-size: 0.8rem;
     color: var(--light);
     font-weight: 400;
 }
 
-.stats{
+.stats {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -43,19 +42,19 @@
     border-bottom: 1px solid rgb(255 255 255 / 10%);
 }
 
-.stats div{
+.stats div {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.stats h4{
+.stats h4 {
     font-size: 0.8rem;
     color: var(--light);
     font-weight: 400;
 }
 
-.stats p{
+.stats p {
     font-size: 0.8rem;
     color: var(--light);
     font-weight: 400;
@@ -64,13 +63,21 @@
 
 /* Comment Section */
 
-.commentArea{
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 0.2rem;
+    /* border-bottom: 1px solid rgb(255 255 255 / 10%); */
+}
+
+.commentArea {
     display: flex;
     gap: 0.5rem;
     /* position: sticky; */
 }
 
-.placeholder{
+.placeholder {
     flex-basis: calc(30px + 0.5rem);
     height: 30px;
     width: 30px;
@@ -78,21 +85,19 @@
     background-color: var(--light);
 }
 
-.placeholder2{
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
+.placeholder2 {
+
     background-color: var(--light);
 }
 
-.commentsContainer{
+.commentsContainer {
     padding: 1rem;
     display: flex;
     flex-direction: column;
     gap: 1rem
 }
 
-.commentsContainer input{
+.commentsContainer input {
     flex: 1 1 auto;
     background-color: var(--dark);
     border-top: 1px solid var(--light);
@@ -106,6 +111,67 @@
     outline: white;
 }
 
-.comments{
+.content{
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex-grow: 1;
+}
 
+.avatar img{
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+}
+
+.comment{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.header{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.username{
+    font-size: 0.8rem;
+    color: var(--light);
+    font-weight: 400;
+}
+
+.time{
+    font-size: 0.6rem;
+    color: var(--light);
+    font-weight: 400;
+    float: right;
+}
+
+.text{
+    font-size: 0.8rem;
+    color: var(--white);
+    font-weight: 400;
+}
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.8rem;
+}
+
+.footer div{
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.footer span{
+    font-size: 0.6rem;
+    color: var(--light);
+    font-weight: 400;
+}
+
+.replies{
+    margin-left: calc(20px + 0.5rem);
 }

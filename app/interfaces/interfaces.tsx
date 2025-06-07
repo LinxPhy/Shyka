@@ -48,7 +48,9 @@ interface AuthContext {
 interface Comments {
     comment_id: number,
     user_id: string,
+    username: string,
     alias: string,
+    image: string,
     content: string,
     created_at: string,
     updated_at: string,
@@ -59,6 +61,8 @@ interface Replies {
     reply_id: number,
     comment_id: number,
     parent_reply_id: number,
+    image: string,
+    username: string,
     user_id: string,
     alias: string,
     content: string,
