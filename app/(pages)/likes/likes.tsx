@@ -2,33 +2,39 @@
 import Link from 'next/link'
 import styles from './likes.module.css'
 import Chatbot from '@/app/components/chatbot/chatbot'
-import InfiniteScrollContainer from '@/app/components/infiniteScroll'
+import { useQuery } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useInfiniteQuery } from '@tanstack/react-query'
 
-const getChatbotLikes = async (page: number) => {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/chatbot_likes`, { params: { page } })
+const getChatbotLikes = async ({ user_id, page }: { user_id: string, page: number }) => {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/chatbot_likes`, { params: { user_id, page } })
     return response.data
 }
 
-export default function Likes({ chatbots }: { chatbots: Chatbot[] }) {
+export default function Likes({ chatbots, user_id, hasMore }: { chatbots: Chatbot[], hasMore: boolean, user_id: string }) {
 
-    const { data, status, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
-        queryKey: ['chatbot_likes'],
-        queryFn: ({ pageParam = 1 }) => getChatbotLikes(pageParam),
-        initialPageParam: 1,
-        initialData: { pages: [chatbots], pageParams: [1] },
-        getNextPageParam: (lastPage, allPages) => {
-            return lastPage.length ? allPages.length + 1 : undefined
-        }
+    const [items, setItems] = useState(chatbots)
+    const [page, setPage] = useState(1)
+
+    const { data, isLoading, isFetching, error } = useQuery({
+        queryKey: ['likes', page],
+        queryFn: () => getChatbotLikes({ user_id, page }),
+        initialData: [],
+        enabled: page > 1
     })
 
-    if ((status as 'idle' | 'pending' | 'error' | 'success') === 'pending') {
-        return <div>Loading...</div>;
-    }
-    if (status === 'error') return (<div>"An error has occurred"</div>)
+    useEffect(() => {
+        if (!data || data.length === 0) return
+        setItems((prev) => [...prev, ...data.likes])
+    }, [data])
 
-    const bots = data.pages.flatMap(page => page)
+    const moreData = () => {
+        if (page === 1) { return hasMore }
+        return data.hasMore
+    }
+
+    if (isLoading) return <div>Loading...</div>
+    if (error) return <div>"An error has occurred"</div>
 
     return (
         <section className={styles.container}>
@@ -37,14 +43,21 @@ export default function Likes({ chatbots }: { chatbots: Chatbot[] }) {
             </div>
 
             <div className={styles.chatbots}>
-                <InfiniteScrollContainer onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}>
-                    {bots.map((chatbot: Chatbot) => (
-                        <Link href={`/chat/${chatbot.alias}`} key={chatbot.chatbot_id}>
-                            <Chatbot chatbot={chatbot} />
-                        </Link>
-                    ))}
-                </InfiniteScrollContainer>
+                {items && items.map((chatbot: Chatbot) => (
+                    <Link href={`/chat/${chatbot.alias}`} key={chatbot.chatbot_id}>
+                        <Chatbot chatbot={chatbot} />
+                    </Link>
+                ))}
             </div>
+
+            <div className={styles.loadMore}>
+                <button
+                    onClick={() => setPage(page + 1)}
+                    disabled={isFetching || !moreData()}>
+                    Load more
+                </button>
+            </div>
+
         </section>
     )
 

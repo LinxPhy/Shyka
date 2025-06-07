@@ -4,7 +4,7 @@ import styles from "./chat.module.css"
 import Chatbot from "./chatbot"
 import Image from "next/image"
 import { auth } from "@/app/auth"
-import Profile from "./sections/profile"
+import Profile from "./sections/profile/profile"
 
 
 export default async function Chat(request: NextRequest) {

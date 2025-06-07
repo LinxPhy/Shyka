@@ -84,7 +84,7 @@ LEFT JOIN log_counts lc ON c.alias = lc.alias
 LEFT JOIN like_counts lk ON c.alias = lk.alias
 LEFT JOIN user_votes uv ON c.alias = uv.alias
 ORDER BY c.name ASC
-LIMIT 3;
+LIMIT 20;
 
 -- flavour
 WITH log_counts AS (
@@ -170,7 +170,13 @@ LEFT JOIN like_counts lk ON c.alias = lk.alias
 LEFT JOIN user_votes uv ON c.alias = uv.alias
 WHERE lk.likes > 0
 ORDER BY c.name ASC
-LIMIT 10;
+LIMIT 5
+OFFSET ?;
+
+-- likes_count
+SELECT COUNT(*) AS likes_count
+FROM likes
+WHERE user_id = ?
 
 -- recent
 WITH log_counts AS (

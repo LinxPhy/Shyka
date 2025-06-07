@@ -1,6 +1,7 @@
 
 const express = require('express')
 const { generateQuery } = require('../scripts/generateQuery')
+const { getTotalPages } = require('../scripts/getTotalPages')
 
 const fs = require('fs')
 const path = require('path')
@@ -114,13 +115,15 @@ app.get('/api/popular', async (req, res) => {
 app.get('/api/chatbot_likes', async (req, res) => {
 
     try {   
-        const user_id = req.query.user_id
+        const { user_id, page } = req.query
         if (!user_id) return res.sendStatus(400)
-
-        // const page = req.query.page
-
-        const result = await generateQuery(queries.likes, [user_id])
-        res.send(result)
+        
+        const offset = (parseInt(page) - 1) * 7
+        const chatbots = await generateQuery(queries.likes, [user_id, offset])
+        const nextPage = await generateQuery(queries.likes, [user_id, offset + 7])
+        const hasMore = nextPage.length > 0
+        res.send({ likes: chatbots, hasMore })
+        
     } catch (e) {
         console.log(e)
         res.sendStatus(500)

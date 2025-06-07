@@ -9,13 +9,13 @@ export default async function LikePage() {
     if (!session) return redirect('/api/auth/login')
 
     const user_id = session?.user?.user_id;
-    const response = await axios.get(`${process.env.SERVER_URL}/chatbot_likes`, { params: { user_id } })
-    const likes = response.data
+    const response = await axios.get(`${process.env.SERVER_URL}/chatbot_likes`, { params: { user_id, page: 1 } })
+    const {likes, hasMore} = response.data
 
     return (
         <main>
             <div className='content'>
-                <Likes chatbots={likes} />
+                <Likes chatbots={likes} hasMore={hasMore} user_id={user_id} />
             </div>
         </main>
     )

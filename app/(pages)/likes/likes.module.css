@@ -1,4 +1,8 @@
 
+.container{
+    display: flex;
+    flex-direction: column;
+}
 
 .title{
     padding: 1rem 0.8rem;
@@ -10,4 +14,43 @@
 .title h1{
     font-size: 1.2rem;
     font-weight: 500;
+}
+
+.chatbots {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.8rem;
+}
+
+.loadMore{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+.loadMore button{
+    background-color: var(--dark);
+    border: none;
+    padding: 0.8rem;
+    border-radius: 1rem;
+    color: var(--white);
+    border: 2px solid var(--light);
+    font-weight: bold;
+}
+
+.loadMore button:hover{
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+.loadMore button:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media screen and (max-width: 600px) {
+    .loadMore button{
+        width: 100%;
+    }
+    
 }
