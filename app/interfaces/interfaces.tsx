@@ -44,3 +44,24 @@ interface AuthContext {
         image: string
     }
 }
+
+interface Comments {
+    comment_id: number,
+    user_id: string,
+    alias: string,
+    content: string,
+    created_at: string,
+    updated_at: string,
+    replies: [Replies]
+}
+
+interface Replies {
+    reply_id: number,
+    comment_id: number,
+    parent_reply_id: number,
+    user_id: string,
+    alias: string,
+    content: string,
+    created_at: string,
+    updated_at: string
+}

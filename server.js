@@ -8,6 +8,7 @@ const chatbots = require('./routes/chatbots')
 const session = require('./routes/session')
 const chat = require('./routes/chat')
 const like = require('./routes/like')
+const comments = require('./routes/comments')
 const { processAllImages } = require('./scripts/optimise')
 
 const app = express()
@@ -31,6 +32,7 @@ app.use(chatbots)
 app.use(session)
 app.use(chat)
 app.use(like)
+app.use(comments)
 
 // processAllImages()
 

@@ -1,8 +1,6 @@
 
 const express = require('express')
 const { generateQuery } = require('../scripts/generateQuery')
-const { getTotalPages } = require('../scripts/getTotalPages')
-
 const fs = require('fs')
 const path = require('path')
 const app = express()
