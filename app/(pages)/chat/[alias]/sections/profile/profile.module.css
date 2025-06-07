@@ -63,6 +63,16 @@
 
 /* Comment Section */
 
+.profile{
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+.profile::-webkit-scrollbar {
+    display: none;
+}
+
 .main{
     display: flex;
     flex-direction: column;
@@ -74,7 +84,9 @@
 .commentArea {
     display: flex;
     gap: 0.5rem;
-    /* position: sticky; */
+    /* background-color: var(--darker);
+    position: sticky;
+    top: 0; */
 }
 
 .placeholder {
@@ -103,7 +115,7 @@
     border-top: 1px solid var(--light);
     font-size: 0.8rem;
     width: 100%;
-    padding: 0.5rem 1.2rem;
+    padding: 0.4rem 1.2rem;
     border: 1px solid var(--darker);
     border-radius: 2rem;
     background-color: var(--dark);
@@ -116,6 +128,12 @@
     flex-direction: column;
     gap: 0.4rem;
     flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.avatar{
+    flex-basis: 20px;
+    flex-shrink: 0;
 }
 
 .avatar img{
@@ -136,7 +154,7 @@
 }
 
 .username{
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     color: var(--light);
     font-weight: 400;
 }
@@ -172,6 +190,20 @@
     font-weight: 400;
 }
 
+.footer .icon:first-child span:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .replies{
     margin-left: calc(20px + 0.5rem);
+}
+
+.reply{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.replyInput{
+    margin-top: 10px;
 }

@@ -1,6 +1,6 @@
+import CommentsArea from "./comments/comments_area"
 import Image from "next/image"
 import styles from "./profile.module.css"
-import Comments from "./comments/comments"
 
 export default function Profile({ chatbot }: { chatbot: Chatbot }) {
 
@@ -35,7 +35,7 @@ export default function Profile({ chatbot }: { chatbot: Chatbot }) {
 
             </div>
 
-            <Comments />
+            <CommentsArea />
 
         </aside>
     )
