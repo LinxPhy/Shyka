@@ -1,13 +1,12 @@
 'use client'
 import Image from "next/image"
-import GreyHeart from '@/app/icons/grey_heart.png'
 import Chat from '@/app/icons/chat.png'
 import Report from '@/app/icons/report.png'
 import axios from "axios"
 import styles from "../profile.module.css"
 import { useContext, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { AuthContext } from "@/app/components/contextProvider"
+import CommentLike from "./like"
 
 export default function Footer({ user_id, comment_id, alias }: { user_id: number, comment_id: number, alias: string }) {
 
@@ -25,10 +24,6 @@ export default function Footer({ user_id, comment_id, alias }: { user_id: number
         },
         onSuccess: (data) => {
             messages.setQueryData(['comments', alias], (oldData: any) => {
-                // const comment = oldData.find((comment: any) => comment.comment_id === comment_id)
-                // comment.replies = [data, ...comment.replies]
-                // return oldData
-
                 return oldData.map((comment: any) => {
                     if (comment.comment_id === comment_id) {
                         return {
@@ -43,7 +38,10 @@ export default function Footer({ user_id, comment_id, alias }: { user_id: number
             setMessage('')
         },
         onError: (error) => { console.log(error) },
-        onSettled: () => { setDisabled(false) }
+        onSettled: () => { 
+            setDisabled(false) 
+            setReply(false)
+        }
     })
 
 
@@ -56,11 +54,9 @@ export default function Footer({ user_id, comment_id, alias }: { user_id: number
                     <Image src={Chat} alt="" width={10} height={10} />
                     <span onClick={() => setReply(!reply)} >Reply</span>
                 </div>
+                
+                <CommentLike />
 
-                <div className={styles.icon}>
-                    <Image src={GreyHeart} alt="" width={10} height={10} />
-                    <span>7</span>
-                </div>
                 <div className={styles.icon}>
                     <Image src={Report} alt="" width={10} height={10} />
                     <span>Report</span>

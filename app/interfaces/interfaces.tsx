@@ -67,5 +67,7 @@ interface Replies {
     alias: string,
     content: string,
     created_at: string,
-    updated_at: string
+    updated_at: string,
+    replying_content: string,
+    replying_username: string
 }

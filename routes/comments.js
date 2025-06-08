@@ -53,9 +53,8 @@ app.get('/api/comments/:alias', async (req, res) => {
 
 app.post('/api/add_comment', async (req, res) => {
 
-    try {
+    try { 
         const { user_id, alias, comment } = req.body
-        
         await generateQuery(queries.addComment, [user_id, alias, comment])
         const result = await generateQuery(queries.getNewComment, [alias])
 
@@ -71,8 +70,8 @@ app.post('/api/add_comment', async (req, res) => {
 app.post('/api/add_reply', async (req, res) => {
     
     try {
-        const { user_id, comment_id, message } = req.body
-        await generateQuery(queries.addReply, [user_id, comment_id, message])
+        const { user_id, reply_id, comment_id, message } = req.body
+        await generateQuery(queries.addReply, [user_id, reply_id, comment_id, message])
         const result = await generateQuery(queries.getNewReply, [comment_id])
         res.send(result[0])
 
