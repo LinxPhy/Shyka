@@ -186,6 +186,4 @@ app.get('/api/search/:query', async (req, res) => {
 })
 
 
-
-
 module.exports = app

@@ -117,9 +117,27 @@ app.get('/lorem', async (req, res) => {
 
 })
 
-// app.post('/api/add_reply', async (req, res) => {
 
-// })
+app.get('/api/stats', async (req, res) => {
+
+    try {
+        
+        const alias = req.query.alias
+        const messages = await generateQuery(queries.total_messages, [alias])
+        const comments = await generateQuery(queries.total_comments, [alias, alias])
+        const likes = await generateQuery(queries.total_likes, [alias])
+        res.send({ messages: messages[0].messages, comments: comments[0].comments, likes: likes[0].likes })
+
+    } catch (e) {
+        console.log(e)
+        res.sendStatus(500)
+    }
+    
+})
+
+
+
+
 
 
 module.exports = app

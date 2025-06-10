@@ -1,8 +1,26 @@
+'use client'
 import CommentsArea from "./comments/comments_area"
 import Image from "next/image"
 import styles from "./profile.module.css"
+import { useQuery } from "@tanstack/react-query"
+import axios from "axios"
+
+const getStats = async (alias: string) => {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/stats`, { params: { alias } });
+    return response.data
+}
+
 
 export default function Profile({ chatbot }: { chatbot: Chatbot }) {
+
+    const { data, isLoading, error } = useQuery({
+        queryKey: ['stats', chatbot.alias],
+        queryFn: () => getStats(chatbot.alias),
+    })
+
+    if (isLoading) return <div>Loading...</div>
+    if (error) return <div>Error</div>
+
 
     return (
         <aside className={styles.profile}>
@@ -20,17 +38,17 @@ export default function Profile({ chatbot }: { chatbot: Chatbot }) {
 
                 <div>
                     <h4>Messages</h4>
-                    <p>50</p>
+                    <p>{data.messages}</p>
                 </div>
 
                 <div>
                     <h4>Comments</h4>
-                    <p>50</p>
+                    <p>{data.comments}</p>
                 </div>
 
                 <div>
                     <h4>Likes</h4>
-                    <p>50</p>
+                    <p>{data.likes}</p>
                 </div>
 
             </div>
