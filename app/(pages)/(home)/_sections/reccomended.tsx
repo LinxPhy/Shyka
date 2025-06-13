@@ -21,11 +21,17 @@ export default function Reccomended({ chatbots, category }: { chatbots: Chatbot[
     const [selection, setSelection] = useState('reccomended')
 
     useEffect(() => {
-        query.setQueryData(['reccomended', selection], chatbots);
+        if (selection === 'reccomended') {
+            query.setQueryData(['reccomended', selection], chatbots);
+        }
     }, [chatbots, selection, query]);
 
+    // useEffect(() => {
+    //     if (selection === 'reccomended') setEnable(true);
+    // }, [selection]);
+
     useEffect(() => {
-        if (selection === 'reccomended') setEnable(true);
+        setEnable(true);
     }, [selection]);
 
 
