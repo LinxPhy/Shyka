@@ -2,39 +2,54 @@
 
 -- comments
 WITH comment_count AS (
-	SELECT alias, COUNT(*) AS comments
-	FROM comments
-	GROUP BY alias
+	SELECT comment_id, COUNT(*) AS replies
+	FROM replies
+	GROUP BY comment_id
 ),
 like_counts AS (
 	SELECT comment_id, COUNT(*) AS likes
-	FROM likes
+	FROM comment_likes
 	GROUP BY comment_id
 ),
 user_votes AS (
 	SELECT comment_id
-	FROM likes
+	FROM comment_likes
 	WHERE user_id = ?
 )
 SELECT  
 c.*, u.username, u.image, 
-COALESCE(lc.comments, 0) AS comments,
+COALESCE(lc.replies, 0) + 1 AS comments,
 COALESCE(lk.likes, 0) AS likes,
 CASE WHEN uv.comment_id IS NOT NULL THEN TRUE ELSE FALSE END AS voted
 FROM comments c
 JOIN users u ON c.user_id = u.user_id
-LEFT JOIN comment_count lc ON c.alias = lc.alias
+LEFT JOIN comment_count lc ON c.comment_id = lc.comment_id
 LEFT JOIN like_counts lk ON c.comment_id = lk.comment_id
 LEFT JOIN user_votes uv ON c.comment_id = uv.comment_id
-WHERE alias = ?
+WHERE c.alias = ?
 ORDER BY created_at DESC
 LIMIT 10;
 
 -- replies
-SELECT r.*, u.username, u.image, r2.content AS 'replying_content', u2.username AS 'replying_username' FROM replies r
+WITH like_counts AS (
+	SELECT reply_id, COUNT(*) AS likes
+	FROM reply_likes
+	GROUP BY reply_id
+),
+user_votes AS (
+	SELECT reply_id
+	FROM reply_likes
+	WHERE user_id = ?
+)
+SELECT r.*, u.username, u.image, r2.content AS 'replying_content', u2.username AS 'replying_username',
+COALESCE(lk.likes, 0) AS likes,
+CASE WHEN uv.reply_id IS NOT NULL THEN TRUE ELSE FALSE END AS voted
+FROM replies r
 JOIN users u ON r.user_id = u.user_id
 LEFT JOIN replies r2 ON r.parent_reply_id = r2.reply_id
 LEFT JOIN users u2 ON r2.user_id = u2.user_id
+LEFT JOIN like_counts lk ON r.reply_id = lk.reply_id
+LEFT JOIN user_votes uv ON r.reply_id = uv.reply_id
 WHERE r.comment_id IN (?)
 ORDER BY created_at DESC
 LIMIT 15;

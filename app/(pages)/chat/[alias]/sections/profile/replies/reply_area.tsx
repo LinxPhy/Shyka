@@ -7,8 +7,10 @@ import styles from "../profile.module.css"
 import { useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
+import CommentLike from '../comments/like'
+import ReplyLike from './like'
 
-export default function ReplyArea({ comment_id, user_id, alias,reply }: { comment_id: number, user_id: number, alias: string, reply: Replies }) {
+export default function ReplyArea({ comment_id, user_id, alias, reply, likes, voted }: { comment_id: number, user_id: number, alias: string, reply: Replies, likes: number, voted: number }) {
 
     const [replying, setReplying] = useState(false);
     const [message, setMessage] = useState('');
@@ -72,10 +74,9 @@ export default function ReplyArea({ comment_id, user_id, alias,reply }: { commen
                             <Image src={Chat} alt="" width={10} height={10} />
                             <span onClick={() => setReplying(!replying)}>Reply</span>
                         </div>
-                        <div className={styles.icon}>
-                            <Image src={GreyHeart} alt="" width={10} height={10} />
-                            <span>7</span>
-                        </div>
+                    
+                        <ReplyLike comment_id={comment_id} user_id={user_id} reply_id={reply.reply_id} alias={alias} likes={likes} voted={voted} />
+
                         <div className={styles.icon}>
                             <Image src={Report} alt="" width={10} height={10} />
                             <span>Report</span>

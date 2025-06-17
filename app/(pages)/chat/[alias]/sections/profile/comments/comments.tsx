@@ -12,8 +12,8 @@ import { useContext, useEffect } from "react"
 import { AuthContext } from "@/app/components/contextProvider"
 import ReplyArea from "../replies/reply_area"
 
-const getComments = async ({ alias }: { alias: string }) => {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${alias}`);
+const getComments = async ({ user_id, alias }: { user_id: string, alias: string }) => {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${alias}`, { params: { user_id } });
     return response.data
 }
 
@@ -26,7 +26,7 @@ export default function Comments() {
 
     const { data, isLoading, error } = useQuery({
         queryKey: ['comments', alias],
-        queryFn: () => getComments({ alias }),
+        queryFn: () => getComments({ user_id, alias }),
         // refetchInterval: 30000
     })
 
@@ -55,13 +55,21 @@ export default function Comments() {
                                 <p className={styles.text}>{comment.content}</p>
                             </div>
 
-                            <Footer user_id={user_id} comment_id={comment.comment_id} alias={alias} />
+                            <Footer user_id={user_id} comment_id={comment.comment_id} voted={comment.voted} likes={comment.likes} alias={alias} />
 
                         </div>
                     </div>
 
                     {comment.replies && comment.replies.map((reply: Replies) => (
-                        <ReplyArea key={reply.reply_id} comment_id={comment.comment_id} user_id={user_id} alias={alias} reply={reply} />
+                        <ReplyArea 
+                            key={reply.reply_id} 
+                            comment_id={comment.comment_id} 
+                            user_id={user_id} 
+                            alias={alias} 
+                            reply={reply} 
+                            likes={reply.likes}
+                            voted={reply.voted}
+                        />
                     ))}
 
 

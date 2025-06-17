@@ -54,6 +54,8 @@ interface Comments {
     content: string,
     created_at: string,
     updated_at: string,
+    likes: number,
+    voted: number,
     replies: [Replies]
 }
 
@@ -69,5 +71,7 @@ interface Replies {
     created_at: string,
     updated_at: string,
     replying_content: string,
-    replying_username: string
+    replying_username: string,
+    likes: number,
+    voted: number
 }

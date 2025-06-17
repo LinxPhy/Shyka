@@ -27,12 +27,13 @@ app.get('/api/comments/:alias', async (req, res) => {
 
     try {
         const alias = req.params.alias
+        const user_id = req.query.user_id
         // const { page } = req.query
         // const offset = (page - 1) * 10
 
-        const comments = await generateQuery(queries.comments, [alias])
+        const comments = await generateQuery(queries.comments, [ user_id, alias])
         const ids = comments.map((comment) => comment.comment_id)
-        const replies = ids.length > 0 ? await generateQuery(queries.replies, [ids]) : [];
+        const replies = ids.length > 0 ? await generateQuery(queries.replies, [user_id, ids]) : [];
 
         const data = comments.map((comment) => ({
             ...comment,

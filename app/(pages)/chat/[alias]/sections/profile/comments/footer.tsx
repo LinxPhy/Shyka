@@ -8,7 +8,7 @@ import { useContext, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import CommentLike from "./like"
 
-export default function Footer({ user_id, comment_id, alias }: { user_id: number, comment_id: number, alias: string }) {
+export default function Footer({ user_id, comment_id, voted, alias, likes }: { user_id: number, comment_id: number, alias: string, voted: number, likes: number }) {
 
     const [reply, setReply] = useState(false);
     const [message, setMessage] = useState('');
@@ -55,7 +55,7 @@ export default function Footer({ user_id, comment_id, alias }: { user_id: number
                     <span onClick={() => setReply(!reply)} >Reply</span>
                 </div>
                 
-                <CommentLike />
+                <CommentLike likes={likes} voted={voted} comment_id={comment_id} user_id={user_id} alias={alias} reply_id={0} />
 
                 <div className={styles.icon}>
                     <Image src={Report} alt="" width={10} height={10} />
