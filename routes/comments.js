@@ -23,15 +23,37 @@ const loadQueries = (filename) => {
 
 const queries = loadQueries('../queries/comments.sql');
 
+// app.get('/api/chatbot_likes', async (req, res) => {
+
+//     try {   
+//         const { user_id, page } = req.query
+//         if (!user_id) return res.sendStatus(400)
+        
+//         const offset = (parseInt(page) - 1) * 7
+//         const chatbots = await generateQuery(queries.likes, [user_id, offset])
+//         const nextPage = await generateQuery(queries.likes, [user_id, offset + 7])
+//         const hasMore = nextPage.length > 0
+//         res.send({ likes: chatbots, hasMore })
+        
+//     } catch (e) {
+//         console.log(e)
+//         res.sendStatus(500)
+//     }
+
+// })
+
 app.get('/api/comments/:alias', async (req, res) => {
 
     try {
         const alias = req.params.alias
         const user_id = req.query.user_id
-        // const { page } = req.query
-        // const offset = (page - 1) * 10
+        const page = req.query.page
+        const offset = (parseInt(page) - 1) * 10
 
-        const comments = await generateQuery(queries.comments, [ user_id, alias])
+        const comments = await generateQuery(queries.comments, [ user_id, alias, offset])
+        const nextPage = await generateQuery(queries.comments, [user_id, alias, offset + 10])
+        const hasMore = nextPage.length > 0
+
         const ids = comments.map((comment) => comment.comment_id)
         const replies = ids.length > 0 ? await generateQuery(queries.replies, [user_id, ids]) : [];
 
@@ -39,10 +61,8 @@ app.get('/api/comments/:alias', async (req, res) => {
             ...comment,
             replies: replies.filter((reply) => reply.comment_id === comment.comment_id)
         }));
-        res.send(data)
-        // const nextPage = await generateQuery(queries.comments, [alias])
-        // const hasMore = nextPage.length > 0
-        // res.send({ comments, hasMore })
+
+        res.send({data, hasMore})
 
     } catch (e) {
         console.log(e)

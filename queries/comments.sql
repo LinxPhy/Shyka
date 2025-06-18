@@ -28,7 +28,8 @@ LEFT JOIN like_counts lk ON c.comment_id = lk.comment_id
 LEFT JOIN user_votes uv ON c.comment_id = uv.comment_id
 WHERE c.alias = ?
 ORDER BY created_at DESC
-LIMIT 10;
+LIMIT 10
+OFFSET ?;
 
 -- replies
 WITH like_counts AS (
@@ -52,7 +53,7 @@ LEFT JOIN like_counts lk ON r.reply_id = lk.reply_id
 LEFT JOIN user_votes uv ON r.reply_id = uv.reply_id
 WHERE r.comment_id IN (?)
 ORDER BY created_at DESC
-LIMIT 15;
+LIMIT 3;
 
 
 -- addComment

@@ -13,7 +13,7 @@ const likeButton = async(user_id: number, comment_id: number) => {
     return response.data
 }
 
-export default function CommentLike({ likes, voted, comment_id, user_id, alias, reply_id }: { likes: number, voted: number, comment_id: number, user_id: number, alias: string, reply_id: number }) {
+export default function CommentLike({ likes, voted, comment_id, user_id, alias }: { likes: number, voted: number, comment_id: number, user_id: number, alias: string}) {
 
     const [liked, setLiked] = useState(voted);
     const [loading, setLoading] = useState(false);
